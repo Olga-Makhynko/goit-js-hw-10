@@ -12,7 +12,7 @@ if (!startButton) {
   startButton.disabled = true;
 }
 
-const dateTimePicker = document.getElementById('datetime-picker');
+const dateTimePicker = document.getElementById('#datetime-picker');
 
 const timerFields = {
   days: document.querySelector('[data-days]'),
