@@ -5,7 +5,15 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const startButton = document.querySelector('[data-start]');
+
+if (!startButton) {
+  console.error('Start button not found');
+} else {
+  startButton.disabled = true;
+}
+
 const dateTimePicker = document.getElementById('datetime-picker');
+
 const timerFields = {
   days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
@@ -15,8 +23,6 @@ const timerFields = {
 
 let userSelectedDate = null;
 let timerId = null;
-
-startButton.disabled = true;
 
 const options = {
   enableTime: true,
