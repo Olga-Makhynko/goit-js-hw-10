@@ -4,13 +4,13 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const startButton = document.querySelector('.button');
+const startButton = document.querySelector('[data-start]');
 const dateTimePicker = document.getElementById('datetime-picker');
 const timerFields = {
-  days: document.querySelector('.data-days'),
-  hours: document.querySelector('.data-hours'),
-  minutes: document.querySelector('.data-minutes'),
-  seconds: document.querySelector('.data-seconds'),
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
 };
 
 let userSelectedDate = null;
