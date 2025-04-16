@@ -13,10 +13,10 @@ const timerFields = {
   seconds: document.querySelector('[data-seconds]'),
 };
 
-startButton.disabled = true;
-
 let userSelectedDate = null;
 let timerId = null;
+
+startButton.disabled = true;
 
 const options = {
   enableTime: true,
