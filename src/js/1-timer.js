@@ -4,14 +4,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const startButton = document.querySelector('[data-start]');
-
-if (!startButton) {
-  console.error('Start button not found');
-} else {
-  startButton.disabled = true;
-}
-
-const dateTimePicker = document.getElementById('#datetime-picker');
+const dateTimePicker = document.getElementById('datetime-picker');
 
 const timerFields = {
   days: document.querySelector('[data-days]'),
@@ -22,6 +15,19 @@ const timerFields = {
 
 let userSelectedDate = null;
 let timerId = null;
+
+if (
+  !startButton ||
+  !dateTimePicker ||
+  !timerFields.days ||
+  !timerFields.hours ||
+  !timerFields.minutes ||
+  !timerFields.seconds
+) {
+  console.error('Some required elements were not found');
+} else {
+  startButton.disabled = true;
+}
 
 const options = {
   enableTime: true,
@@ -40,6 +46,7 @@ const options = {
     } else {
       userSelectedDate = picked;
       startButton.disabled = false;
+      iziToast.hide({}, true);
     }
   },
 };
@@ -47,10 +54,14 @@ const options = {
 flatpickr(dateTimePicker, options);
 
 startButton.addEventListener('click', () => {
-  if (!userSelectedDate) return;
+  if (!userSelectedDate) {
+    console.error('User has not selected a date!');
+    return;
+  }
 
   startButton.disabled = true;
   dateTimePicker.disabled = true;
+
   timerId = setInterval(() => {
     const now = new Date();
     const timerLast = userSelectedDate - now;
@@ -59,6 +70,7 @@ startButton.addEventListener('click', () => {
       clearInterval(timerId);
       updateTimer(0);
       dateTimePicker.disabled = false;
+      startButton.disabled = false;
       return;
     }
 
@@ -92,6 +104,3 @@ function updateTimer(ms) {
   timerFields.minutes.textContent = addLeadingZero(minutes);
   timerFields.seconds.textContent = addLeadingZero(seconds);
 }
-console.log(convertMs(2000));
-console.log(convertMs(140000));
-console.log(convertMs(24140000));
