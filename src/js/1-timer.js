@@ -39,11 +39,22 @@ const options = {
 
     if (!picked || picked <= new Date()) {
       startButton.disabled = true;
-      iziToast.warning({
+
+      if (toastInstance) {
+        try {
+          iziToast.hide({ transitionOut: 'fade' });
+        } catch (error) {
+          console.error('Error while hiding toast:', error);
+        }
+      }
+
+      toastInstance = iziToast.warning({
         title: 'Warning',
         message: 'Please choose a date in the future',
         position: 'topRight',
       });
+
+      return false;
     } else {
       userSelectedDate = picked;
       startButton.disabled = false;
