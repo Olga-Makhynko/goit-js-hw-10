@@ -46,7 +46,6 @@ const options = {
     } else {
       userSelectedDate = picked;
       startButton.disabled = false;
-      iziToast.hide({}, true);
     }
   },
 };
