@@ -36,7 +36,8 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     const picked = selectedDates[0];
-    if (picked <= new Date()) {
+
+    if (!picked || picked <= new Date()) {
       startButton.disabled = true;
       iziToast.warning({
         title: 'Warning',
@@ -69,7 +70,7 @@ startButton.addEventListener('click', () => {
       clearInterval(timerId);
       updateTimer(0);
       dateTimePicker.disabled = false;
-      startButton.disabled = false;
+      startButton.disabled = true;
       return;
     }
 
